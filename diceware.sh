@@ -11,7 +11,7 @@ strength=$DEFAULT_STRENGTH
 
 usage() {
     echo -e "Diceware password generation tool, version: v1"
-    echo "Usage: $0 [-s 5..] [-d en|eff]"
+    echo "Usage: $0 [-s 5..] [-d en|eff|alt]"
     exit 1
 }
 
@@ -23,7 +23,10 @@ while getopts ":s:d:" o; do
             ;;
         d)
             dictionary=${OPTARG}
-            [[ "$dictionary" != "en" ]] && [[ "$dictionary" != "eff" ]] && usage
+            [[ "$dictionary" != "en" ]] && \
+		    [[ "$dictionary" != "eff" ]] && \
+		    [[ "$dictionary" != "alt" ]] && \
+		    usage
             ;;
         *)
             usage
@@ -37,6 +40,8 @@ if [[ "$dictionary" == "eff" ]]; then
     datafile="${SCRIPT_DIR}/diceware_data/eff_large.data"
 elif [[ "$dictionary" == "en" ]]; then
     datafile="${SCRIPT_DIR}/diceware_data/simple.data"
+elif [[ "$dictionary" == "alt" ]]; then
+    datafile="${SCRIPT_DIR}/diceware_data/alternate.data"
 fi
 
 # Generate password:
