@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 DEFAULT_DICTIONARY="eff"
-DEFAULT_STRENGTH="5"
+DEFAULT_STRENGTH="6"
 
 # Set defaults:
 dictionary=$DEFAULT_DICTIONARY
@@ -12,6 +12,7 @@ strength=$DEFAULT_STRENGTH
 usage() {
     echo -e "Diceware password generation tool, version: v1"
     echo "Usage: $0 [-s 5..] [-d en|eff|alt]"
+    echo -e "\tStrength must be set to a minimum of 5"
     exit 1
 }
 
